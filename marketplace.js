@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const healthCard = document.querySelector('.insurance-card:not(.link-card) .cta-button');
     if (healthCard) {
         healthCard.addEventListener('click', function() {
-            window.location.href = 'index.html';
+            window.location.href = 'couriers.html';
         });
     }
 
