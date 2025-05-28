@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявление на страхование здоровья</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="health-form.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Лого</div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="marketplace.html">Страхование</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <div class="form-container">
+                <h1>Заявление на страхование здоровья</h1>
+                <form id="healthInsuranceForm">
+                    <div class="form-group">
+                        <h2>Личные данные</h2>
+                        <div class="input-group">
+                            <label for="lastName">Фамилия:</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="firstName">Имя:</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="middleName">Отчество:</label>
+                            <input type="text" id="middleName" name="middleName">
+                        </div>
+                        <div class="input-group">
+                            <label for="birthDate">Дата рождения:</label>
+                            <input type="date" id="birthDate" name="birthDate" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="iin">ИИН:</label>
+                            <input type="text" id="iin" name="iin" required pattern="[0-9]{12}">
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">Контактный телефон:</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX">
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="gender">Пол:</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Выберите пол</option>
+                                <option value="male">Мужской</option>
+                                <option value="female">Женский</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="maritalStatus">Семейное положение:</label>
+                            <select id="maritalStatus" name="maritalStatus" required>
+                                <option value="">Выберите семейное положение</option>
+                                <option value="single">Холост/Не замужем</option>
+                                <option value="married">Женат/Замужем</option>
+                                <option value="divorced">Разведен/Разведена</option>
+                                <option value="widowed">Вдовец/Вдова</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h2>Адрес</h2>
+                        <div class="input-group">
+                            <label for="address">Адрес проживания:</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="registrationAddress">Адрес регистрации:</label>
+                            <input type="text" id="registrationAddress" name="registrationAddress" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h2>Декларативные заявления</h2>
+                        <div class="declaration-group">
+                            <p>Я подтверждаю, что:</p>
+                            <ul class="declaration-list">
+                                <li>Вся предоставленная мной информация является достоверной и полной</li>
+                                <li>Я понимаю, что предоставление заведомо ложной информации может привести к отказу в выплате страхового возмещения</li>
+                                <li>Я согласен с условиями страхования и правилами страхования</li>
+                                <li>Я даю согласие на обработку моих персональных данных в соответствии с законодательством</li>
+                                <li>Я понимаю, что страховая компания имеет право запросить дополнительную медицинскую информацию</li>
+                                <li>Я обязуюсь сообщать о любых изменениях в состоянии здоровья в течение срока действия договора</li>
+                                <li>Я понимаю, что страховая компания может отказать в заключении договора на основании предоставленной информации</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h2>Медицинская информация</h2>
+                        <div class="yes-no-group">
+                            <p>Имеются ли у Вас хронические заболевания?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="chronicDiseases" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="chronicDiseases" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас операции за последние 5 лет?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="surgeries" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="surgeries" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Принимаете ли Вы постоянно какие-либо лекарства?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="medications" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="medications" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас аллергические реакции на лекарства?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="allergies" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="allergies" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Курите ли Вы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="smoking" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="smoking" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Употребляете ли Вы алкоголь?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="alcohol" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="alcohol" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас травмы за последние 5 лет?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="injuries" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="injuries" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас инвалидность?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="disability" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="disability" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас онкологические заболевания?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="cancer" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="cancer" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания сердечно-сосудистой системы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="heartDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="heartDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания эндокринной системы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="endocrineDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="endocrineDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания нервной системы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="nervousDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="nervousDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания органов дыхания?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="respiratoryDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="respiratoryDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания органов пищеварения?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="digestiveDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="digestiveDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания опорно-двигательного аппарата?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="musculoskeletalDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="musculoskeletalDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания мочеполовой системы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="genitourinaryDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="genitourinaryDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания органов зрения?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="eyeDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="eyeDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас заболевания органов слуха?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="hearingDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="hearingDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас психические заболевания?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="mentalDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="mentalDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Есть ли у Вас наследственные заболевания?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="hereditaryDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="hereditaryDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас инфекционные заболевания за последний год?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="infectiousDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="infectiousDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас заболевания крови?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="bloodDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="bloodDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас заболевания иммунной системы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="immuneDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="immuneDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас заболевания кожи?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="skinDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="skinDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="yes-no-group">
+                            <p>Были ли у Вас заболевания костной системы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="boneDisease" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="boneDisease" value="no" checked>
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h2>Выбор тарифа</h2>
+                        <div class="input-group">
+                            <label for="tariff">Выберите тариф:</label>
+                            <select id="tariff" name="tariff" required>
+                                <option value="">Выберите тариф</option>
+                                <option value="platinum">Platinum</option>
+                                <option value="silver">SILVER</option>
+                                <option value="standard1">STANDARD 1</option>
+                                <option value="standard2">STANDARD 2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h2>Согласие</h2>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="agreement" required>
+                                Я даю согласие на обработку персональных данных и подтверждаю достоверность предоставленной информации
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-button">Отправить заявление</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Страховой Маркетплейс. Все права защищены.</p>
+        <p><a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
+    </footer>
+
+    <script src="health-form.js"></script>
+</body>
+</html> 

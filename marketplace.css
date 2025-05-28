@@ -1,0 +1,123 @@
+/* Стили для маркетплейса */
+.marketplace-hero {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+    padding: 80px 0;
+    text-align: center;
+    color: white;
+}
+
+.marketplace-hero h1 {
+    font-size: 3.2em;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.marketplace-hero p {
+    font-size: 1.4em;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Секции страхования */
+.insurance-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.insurance-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.insurance-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.insurance-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    font-size: 1.4em;
+    color: #2193b0;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 1.3em;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.description {
+    text-align: center;
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.link-card {
+    cursor: pointer;
+}
+
+.link-card:hover {
+    text-decoration: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .marketplace-hero h1 {
+        font-size: 2.5em;
+    }
+
+    .marketplace-hero p {
+        font-size: 1.2em;
+    }
+
+    .insurance-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .insurance-card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.insurance-card {
+    animation: fadeIn 0.5s ease-out forwards;
+} 

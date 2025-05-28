@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страхование Жизни для Курьеров</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Лого</div>
+            <ul>
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#benefits">Преимущества</a></li>
+                <li><a href="#how-it-works">Как это работает</a></li>
+                <li><a href="#form">Оформить</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Страхование жизни для курьеров</h1>
+                <p>Защитите себя и свою семью с помощью программы страхования жизни, специально разработанной для курьеров. Работайте спокойно, зная, что вы и ваши близкие под надежной защитой.</p>
+                <a href="#form" class="cta-button">Оформить страховку</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/placeholder-hero.svg" alt="Курьер на транспорте">
+            </div>
+        </section>
+
+        <section id="benefits">
+            <h2>Почему выбирают нас?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <img src="images/placeholder-icon.svg" alt="Иконка Защита 24/7">
+                    <h3>Защита 24/7</h3>
+                    <p>Страховка действует круглосуточно, независимо от того, работаете вы или отдыхаете.</p>
+                </div>
+                <div class="benefit-item">
+                    <img src="images/placeholder-icon.svg" alt="Иконка Быстрое оформление">
+                    <h3>Быстрое оформление</h3>
+                    <p>Оформите полис онлайн за 5 минут, без медицинского осмотра и сложных процедур.</p>
+                </div>
+                <div class="benefit-item">
+                    <img src="images/placeholder-icon.svg" alt="Иконка Доступные тарифы">
+                    <h3>Доступные тарифы</h3>
+                    <p>Гибкие условия страхования с возможностью выбора суммы страхового покрытия.</p>
+                </div>
+                <div class="benefit-item">
+                    <img src="images/placeholder-icon.svg" alt="Иконка Все виды транспорта">
+                    <h3>Универсальность</h3>
+                    <p>Страховка действует независимо от типа транспорта и сервиса доставки.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <h2>Как это работает?</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <img src="images/placeholder-step.svg" alt="Иконка Шаг 1">
+                    <h3>1. Заполните анкету</h3>
+                    <p>Укажите ваши личные данные и выберите программу страхования.</p>
+                </div>
+                <div class="step">
+                    <img src="images/placeholder-step.svg" alt="Иконка Шаг 2">
+                    <h3>2. Выберите тариф</h3>
+                    <p>Подберите оптимальный вариант страхования с учетом ваших потребностей.</p>
+                </div>
+                <div class="step">
+                    <img src="images/placeholder-step.svg" alt="Иконка Шаг 3">
+                    <h3>3. Оплатите онлайн</h3>
+                    <p>Безопасная оплата картой на сайте или через мобильное приложение.</p>
+                </div>
+                <div class="step">
+                    <img src="images/placeholder-step.svg" alt="Иконка Шаг 4">
+                    <h3>4. Полис на email</h3>
+                    <p>Мгновенное получение электронного полиса на указанную почту.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="form">
+            <h2>Оставьте заявку на страхование</h2>
+            <form id="courierForm">
+                <div class="form-group">
+                    <label for="name">ФИО:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="iin">ИИН:</label>
+                    <input type="text" id="iin" name="iin" required maxlength="12">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Дата рождения:</label>
+                    <input type="date" id="birthdate" name="birthdate" required>
+                </div>
+                <div class="form-group">
+                    <label for="platform">Сервис доставки:</label>
+                    <select id="platform" name="platform" required>
+                        <option value="">Выберите сервис</option>
+                        <option value="yandex">Яндекс Еда/Лавка</option>
+                        <option value="wolt">Wolt</option>
+                        <option value="glovo">Glovo</option>
+                        <option value="other">Другой</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tariff">Тариф:</label>
+                    <select id="tariff" name="tariff" required>
+                        <option value="">Выберите тариф</option>
+                        <option value="basic">Базовый</option>
+                        <option value="standard">Стандарт</option>
+                        <option value="premium">Премиум</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="agreement" name="agreement" required>
+                    <label for="agreement" class="checkbox-label">Я согласен на обработку персональных данных</label>
+                </div>
+                <button type="submit" class="cta-button">Отправить заявку</button>
+            </form>
+            <div id="formMessage" style="margin-top: 15px;"></div>
+        </section>
+
+        <section id="faq">
+            <h2>Часто задаваемые вопросы</h2>
+            <div class="faq-item">
+                <h3>Какие риски покрывает страховка?</h3>
+                <p>Страховка покрывает риски смерти от любой причины, инвалидности I и II группы, а также предоставляет дополнительные выплаты при несчастных случаях.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Сколько стоит страховка?</h3>
+                <p>Стоимость зависит от выбранного тарифа и суммы страхового покрытия. Мы предлагаем гибкие условия с возможностью выбора оптимального варианта.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Как быстро я получу полис?</h3>
+                <p>После заполнения анкеты и оплаты, электронный полис будет отправлен на ваш email мгновенно.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Нужен ли медицинский осмотр?</h3>
+                <p>Нет, для оформления полиса не требуется прохождение медицинского осмотра. Достаточно заполнить анкету о состоянии здоровья.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Можно ли изменить условия страхования?</h3>
+                <p>Да, вы можете изменить сумму страхового покрытия или перейти на другой тариф при продлении полиса.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Страхование Курьеров. Все права защищены.</p>
+        <p><a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

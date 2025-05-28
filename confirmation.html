@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение заявки</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-message {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .application-id {
+            background: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 20px 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Лого</div>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="marketplace.html">Страхование</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="confirmation-container">
+            <div class="success-icon">✓</div>
+            <h1 class="confirmation-title">Заявка успешно отправлена!</h1>
+            <p class="confirmation-message">
+                Спасибо за обращение! Ваша заявка на страхование здоровья принята в обработку.<br>
+                Наш специалист свяжется с вами в ближайшее время для уточнения деталей.
+            </p>
+            <div class="application-id" id="applicationId"></div>
+            <p class="confirmation-message">
+                Сохраните номер заявки для дальнейшего отслеживания статуса.
+            </p>
+            <a href="marketplace.html" class="back-button">Вернуться на главную</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Страховой Маркетплейс. Все права защищены.</p>
+        <p><a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
+    </footer>
+
+    <script>
+        // Получаем ID заявки из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const applicationId = urlParams.get('applicationId');
+        
+        // Отображаем ID заявки
+        if (applicationId) {
+            document.getElementById('applicationId').textContent = `Номер заявки: ${applicationId}`;
+        }
+    </script>
+</body>
+</html> 

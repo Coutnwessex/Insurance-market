@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+
+# Логи
+*.log
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Файлы настроек IDE
+.vscode/
+*.code-workspace
+
+# PDF и большие файлы
+*.pdf
+
+# Прочее
+.env 

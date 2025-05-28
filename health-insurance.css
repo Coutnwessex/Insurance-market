@@ -1,0 +1,292 @@
+/* Общие стили */
+:root {
+    --primary-color: #2193b0;
+    --secondary-color: #6dd5ed;
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --white: #ffffff;
+    --shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Секция Hero */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 100px 0;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+}
+
+.hero-section h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.hero-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.primary-button, .secondary-button {
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-button {
+    background: var(--white);
+    color: var(--primary-color);
+    border: none;
+}
+
+.secondary-button {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.primary-button:hover, .secondary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Секция особенностей */
+.features-section {
+    padding: 80px 0;
+    background: var(--light-bg);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Секция преимуществ */
+.benefits-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.benefits-list {
+    max-width: 800px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+    list-style: none;
+}
+
+.benefits-list li {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.benefits-list li:before {
+    content: "✓";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+/* Секция условий */
+.conditions-section {
+    padding: 80px 0;
+    background: var(--light-bg);
+}
+
+.conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.condition-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+/* Секция процесса */
+.process-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.process-steps {
+    max-width: 1000px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin-right: 20px;
+}
+
+/* Секция тарифов */
+.tariffs-section {
+    padding: 80px 0;
+    background: var(--light-bg);
+}
+
+.tariffs-table {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    border-radius: 15px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+tr:hover {
+    background: #f5f5f5;
+}
+
+/* Секция с кнопкой в конце */
+.cta-section {
+    text-align: center;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.cta-section .primary-button {
+    padding: 20px 40px;
+    font-size: 1.3em;
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.cta-section .primary-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-section h2 {
+        font-size: 1.5em;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .conditions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .step-number {
+        margin: 0 0 15px 0;
+    }
+
+    .cta-section .primary-button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-card, .condition-card, .step {
+    animation: fadeIn 0.5s ease-out forwards;
+} 
