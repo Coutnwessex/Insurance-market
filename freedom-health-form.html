@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета FREEDOM HEALTH</title>
+    <link rel="stylesheet" type="text/css" href="freedom-health-form.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="health-form.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Лого</div>
+            <ul>
+                <li><a href="couriers.html">Главная</a></li>
+                <li><a href="marketplace.html">Страхование</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-section">
+            <div class="form-container">
+                <form id="freedomHealthForm">
+                    <h1>ЗАЯВЛЕНИЕ НА МЕЖДУНАРОДНОЕ МЕДИЦИНСКОЕ СТРАХОВАНИЕ<br>(ПРОГРАММА "FREEDOM HEALTH")</h1>
+                    <div class="form-subtitle">
+                        <p>Перед заполнением заявления на страхование, пожалуйста, ознакомьтесь с правилами страхования!</p>
+                    </div>
+                    
+                    <!-- Раздел 1: Сведения о Застрахованном лице -->
+                    <div class="form-group">
+                        <h2>Раздел 1. Сведения о Застрахованном лице</h2>
+                        
+                        <div class="input-group">
+                            <label for="fullName">Ф.И.О.:</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="permanentAddress">Постоянный адрес:</label>
+                            <input type="text" id="permanentAddress" name="permanentAddress" required 
+                                placeholder="почтовый индекс, название области, города, села, улицы, микрорайона, номер дома, квартиры">
+                        </div>
+
+                        <div class="phone-group">
+                            <label>Номер телефона:</label>
+                            <div class="phone-inputs">
+                                <div class="phone-input">
+                                    <label for="homePhone">дом.</label>
+                                    <input type="tel" id="homePhone" name="homePhone" placeholder="код города, номер">
+                                </div>
+                                <div class="phone-input">
+                                    <label for="workPhone">раб.</label>
+                                    <input type="tel" id="workPhone" name="workPhone" placeholder="код города, номер">
+                                </div>
+                                <div class="phone-input">
+                                    <label for="mobilePhone">моб.</label>
+                                    <input type="tel" id="mobilePhone" name="mobilePhone" required placeholder="+7 (XXX) XXX-XX-XX">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="birth-info-group">
+                            <label>Дата и место рождения:</label>
+                            <div class="birth-inputs">
+                                <input type="date" id="birthDate" name="birthDate" required>
+                                <input type="text" id="birthPlace" name="birthPlace" required placeholder="населенный пункт">
+                            </div>
+                        </div>
+
+                        <div class="personal-info-group">
+                            <div class="input-group">
+                                <label for="gender">Пол:</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="">Выберите пол</option>
+                                    <option value="male">Мужской</option>
+                                    <option value="female">Женский</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="maritalStatus">Семейное положение:</label>
+                                <select id="maritalStatus" name="maritalStatus" required>
+                                    <option value="">Выберите семейное положение</option>
+                                    <option value="single">Холост/Не замужем</option>
+                                    <option value="married">Женат/Замужем</option>
+                                    <option value="divorced">Разведен(а)</option>
+                                    <option value="widowed">Вдовец/Вдова</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="work-info-group">
+                            <div class="input-group">
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="profession">Профессия:</label>
+                                <input type="text" id="profession" name="profession" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="workplace">Место работы:</label>
+                                <input type="text" id="workplace" name="workplace" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="jobDescription">Занимаемая должность и точное описание служебных обязанностей:</label>
+                            <textarea id="jobDescription" name="jobDescription" required></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="economySector">Код сектора экономики:</label>
+                            <input type="text" id="economySector" name="economySector" required>
+                        </div>
+
+                        <div class="residency-group">
+                            <label>Признак резидентства:</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="residencyStatus" value="resident" required>
+                                    Резидент
+                                </label>
+                                <label>
+                                    <input type="radio" name="residencyStatus" value="nonresident">
+                                    Нерезидент
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="citizenship">Гражданство:</label>
+                            <input type="text" id="citizenship" name="citizenship" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="iin">ИИН:</label>
+                            <input type="text" id="iin" name="iin" required pattern="[0-9]{12}" maxlength="12">
+                        </div>
+
+                        <div class="document-group">
+                            <label>Документ, удостоверяющий личность:</label>
+                            <div class="input-group">
+                                <label for="documentNumber">№:</label>
+                                <input type="text" id="documentNumber" name="documentNumber" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="documentIssuer">Орган и дата выдачи:</label>
+                                <input type="text" id="documentIssuer" name="documentIssuer" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="documentValidity">Срок действия:</label>
+                                <input type="date" id="documentValidity" name="documentValidity" required>
+                            </div>
+                        </div>
+
+                        <div class="client-status-group">
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="clientStatus" value="new" checked>
+                                    Новый клиент (ранее не был клиентом АО «КСЖ «Freedom Life»)
+                                </label>
+                                <label>
+                                    <input type="radio" name="clientStatus" value="existing">
+                                    Клиент АО «КСЖ «Freedom Life»
+                                </label>
+                            </div>
+                            <div id="previousContractDetails" class="hidden" style="display: none;">
+                                <div class="input-group">
+                                    <label for="previousContract">Пожалуйста, укажите номер предыдущего договора страхования:</label>
+                                    <input type="text" id="previousContract" name="previousContract">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="foreign-tax-group">
+                            <label>Сведения об иностранном налоговом резидентстве:</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="foreignTaxResidency" value="no" checked>
+                                    Нет
+                                </label>
+                                <label>
+                                    <input type="radio" name="foreignTaxResidency" value="yes">
+                                    Да
+                                </label>
+                            </div>
+                            <div id="foreignTaxDetails" class="hidden">
+                                <div class="input-group">
+                                    <label for="residencyCountry">Страна резидентства:</label>
+                                    <input type="text" id="residencyCountry" name="residencyCountry">
+                                </div>
+                                <div class="input-group">
+                                    <label for="taxNumber">Номер налогоплательщика:</label>
+                                    <input type="text" id="taxNumber" name="taxNumber">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Раздел 2: Сведения о страхователе -->
+                    <div class="form-group">
+                        <h2>Раздел 2. Сведения о страхователе</h2>
+                        
+                        <div class="is-insured-group">
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="isInsuredPerson" value="yes">
+                                    Страхователь является Застрахованным лицом
+                                </label>
+                                <label>
+                                    <input type="radio" name="isInsuredPerson" value="no" checked>
+                                    Страхователь не является Застрахованным лицом
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="insurerDetails">
+                            <div class="input-group">
+                                <label for="insurerFullName">Ф.И.О.:</label>
+                                <input type="text" id="insurerFullName" name="insurerFullName" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="insurerPermanentAddress">Постоянный адрес:</label>
+                                <input type="text" id="insurerPermanentAddress" name="insurerPermanentAddress" required 
+                                    placeholder="почтовый индекс, название области, города, села, улицы, микрорайона, номер дома, квартиры">
+                            </div>
+
+                            <div class="phone-group">
+                                <label>Номер телефона:</label>
+                                <div class="phone-inputs">
+                                    <div class="phone-input">
+                                        <label for="insurerHomePhone">дом.</label>
+                                        <input type="tel" id="insurerHomePhone" name="insurerHomePhone" placeholder="код города, номер">
+                                    </div>
+                                    <div class="phone-input">
+                                        <label for="insurerWorkPhone">раб.</label>
+                                        <input type="tel" id="insurerWorkPhone" name="insurerWorkPhone" placeholder="код города, номер">
+                                    </div>
+                                    <div class="phone-input">
+                                        <label for="insurerMobilePhone">моб.</label>
+                                        <input type="tel" id="insurerMobilePhone" name="insurerMobilePhone" required placeholder="+7 (XXX) XXX-XX-XX">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="birth-info-group">
+                                <label>Дата и место рождения:</label>
+                                <div class="birth-inputs">
+                                    <input type="date" id="insurerBirthDate" name="insurerBirthDate" required>
+                                    <input type="text" id="insurerBirthPlace" name="insurerBirthPlace" required placeholder="населенный пункт">
+                                </div>
+                            </div>
+
+                            <div class="personal-info-group">
+                                <div class="input-group">
+                                    <label for="insurerGender">Пол:</label>
+                                    <select id="insurerGender" name="insurerGender" required>
+                                        <option value="">Выберите пол</option>
+                                        <option value="male">Мужской</option>
+                                        <option value="female">Женский</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="insurerMaritalStatus">Семейное положение:</label>
+                                    <select id="insurerMaritalStatus" name="insurerMaritalStatus" required>
+                                        <option value="">Выберите семейное положение</option>
+                                        <option value="single">Холост/Не замужем</option>
+                                        <option value="married">Женат/Замужем</option>
+                                        <option value="divorced">Разведен(а)</option>
+                                        <option value="widowed">Вдовец/Вдова</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="work-info-group">
+                                <div class="input-group">
+                                    <label for="insurerEmail">E-mail:</label>
+                                    <input type="email" id="insurerEmail" name="insurerEmail" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="insurerProfession">Профессия:</label>
+                                    <input type="text" id="insurerProfession" name="insurerProfession" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="insurerWorkplace">Место работы:</label>
+                                    <input type="text" id="insurerWorkplace" name="insurerWorkplace" required>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="insurerJobDescription">Занимаемая должность и точное описание служебных обязанностей:</label>
+                                <textarea id="insurerJobDescription" name="insurerJobDescription" required></textarea>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="insurerEconomySector">Код сектора экономики:</label>
+                                <input type="text" id="insurerEconomySector" name="insurerEconomySector" required>
+                            </div>
+
+                            <div class="residency-group">
+                                <label>Признак резидентства:</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="insurerResidencyStatus" value="resident" required>
+                                        Резидент
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="insurerResidencyStatus" value="nonresident">
+                                        Нерезидент
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="insurerCitizenship">Гражданство:</label>
+                                <input type="text" id="insurerCitizenship" name="insurerCitizenship" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="insurerIin">ИИН:</label>
+                                <input type="text" id="insurerIin" name="insurerIin" required pattern="[0-9]{12}" maxlength="12">
+                            </div>
+
+                            <div class="document-group">
+                                <label>Документ, удостоверяющий личность:</label>
+                                <div class="input-group">
+                                    <label for="insurerDocumentNumber">№:</label>
+                                    <input type="text" id="insurerDocumentNumber" name="insurerDocumentNumber" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="insurerDocumentIssuer">Орган и дата выдачи:</label>
+                                    <input type="text" id="insurerDocumentIssuer" name="insurerDocumentIssuer" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="insurerDocumentValidity">Срок действия:</label>
+                                    <input type="date" id="insurerDocumentValidity" name="insurerDocumentValidity" required>
+                                </div>
+                            </div>
+
+                            <div class="client-status-group">
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="insurerClientStatus" value="new" checked>
+                                        Новый клиент (ранее не был клиентом АО «КСЖ «Freedom Life»)
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="insurerClientStatus" value="existing">
+                                        Клиент АО «КСЖ «Freedom Life»
+                                    </label>
+                                </div>
+                                <div id="insurerPreviousContractDetails" class="hidden" style="display: none;">
+                                    <div class="input-group">
+                                        <label for="insurerPreviousContract">Пожалуйста, укажите номер предыдущего договора страхования:</label>
+                                        <input type="text" id="insurerPreviousContract" name="insurerPreviousContract">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="foreign-tax-group">
+                                <label>Сведения об иностранном налоговом резидентстве:</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="insurerForeignTaxResidency" value="no" checked>
+                                        Нет
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="insurerForeignTaxResidency" value="yes">
+                                        Да
+                                    </label>
+                                </div>
+                                <div id="insurerForeignTaxDetails" class="hidden">
+                                    <div class="input-group">
+                                        <label for="insurerResidencyCountry">Страна резидентства:</label>
+                                        <input type="text" id="insurerResidencyCountry" name="insurerResidencyCountry">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="insurerTaxNumber">Номер налогоплательщика:</label>
+                                        <input type="text" id="insurerTaxNumber" name="insurerTaxNumber">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Раздел 3: Медицинская анкета -->
+                    <div class="form-group">
+                        <h2>3. Медицинская анкета</h2>
+                        <div class="medical-questions">
+                            <div class="question-group">
+                                <p>3.1 Имеются ли у Вас или имелись ранее следующие заболевания:</p>
+                                <div class="disease-list">
+                                    <div class="disease-item">
+                                        <label>
+                                            <input type="checkbox" name="diseases" value="cardiovascular">
+                                            Сердечно-сосудистые заболевания
+                                        </label>
+                                        <textarea name="cardiovascular_details" placeholder="Укажите подробности..."></textarea>
+                                    </div>
+                                    <div class="disease-item">
+                                        <label>
+                                            <input type="checkbox" name="diseases" value="oncological">
+                                            Онкологические заболевания
+                                        </label>
+                                        <textarea name="oncological_details" placeholder="Укажите подробности..."></textarea>
+                                    </div>
+                                    <div class="disease-item">
+                                        <label>
+                                            <input type="checkbox" name="diseases" value="endocrine">
+                                            Эндокринные заболевания
+                                        </label>
+                                        <textarea name="endocrine_details" placeholder="Укажите подробности..."></textarea>
+                                    </div>
+                                    <div class="disease-item">
+                                        <label>
+                                            <input type="checkbox" name="diseases" value="respiratory">
+                                            Заболевания органов дыхания
+                                        </label>
+                                        <textarea name="respiratory_details" placeholder="Укажите подробности..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-group">
+                                <p>3.2 Были ли у Вас травмы или операции за последние 5 лет?</p>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="hadTrauma" value="yes">
+                                        Да
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="hadTrauma" value="no">
+                                        Нет
+                                    </label>
+                                </div>
+                                <textarea name="trauma_details" placeholder="Если да, укажите подробности..."></textarea>
+                            </div>
+
+                            <div class="question-group">
+                                <p>3.3 Находились ли Вы на стационарном лечении за последние 5 лет?</p>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="hadHospitalization" value="yes">
+                                        Да
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="hadHospitalization" value="no">
+                                        Нет
+                                    </label>
+                                </div>
+                                <textarea name="hospitalization_details" placeholder="Если да, укажите подробности..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Раздел 4: Дополнительная информация -->
+                    <div class="form-group">
+                        <h2>4. Дополнительная информация</h2>
+                        <div class="input-group">
+                            <label for="height">Рост (см):</label>
+                            <input type="number" id="height" name="height" required min="100" max="250">
+                        </div>
+                        <div class="input-group">
+                            <label for="weight">Вес (кг):</label>
+                            <input type="number" id="weight" name="weight" required min="30" max="200">
+                        </div>
+                        <div class="yes-no-group">
+                            <p>Курите ли Вы?</p>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="smoking" value="yes">
+                                    Да
+                                </label>
+                                <label>
+                                    <input type="radio" name="smoking" value="no">
+                                    Нет
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Раздел 5: Согласие -->
+                    <div class="form-group">
+                        <h2>5. Согласие и подтверждение</h2>
+                        <div class="consent-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required>
+                                Я подтверждаю достоверность предоставленной информации и согласен на обработку персональных данных
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-button">Отправить анкету</button>
+                        <button type="reset" class="reset-button">Очистить форму</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="freedom-health-form.js"></script>
+</body>
+</html> 
