@@ -3,507 +3,834 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анкета FREEDOM HEALTH</title>
-    <link rel="stylesheet" type="text/css" href="freedom-health-form.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="health-form.css">
+    <title>Freedom Health - Оформление</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0066CC;
+            --secondary-color: #004C99;
+            --text-color: #333333;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .program-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .program-card {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .program-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .program-card.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(0,102,204,0.05);
+        }
+
+        .program-details {
+            margin-top: 15px;
+        }
+
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        .price-monthly {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .features li {
+            padding: 5px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9em;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(0,102,204,0.05);
+        }
+
+        .compare-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .compare-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .compare-link a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table .plus {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            .comparison-table {
+                font-size: 14px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px;
+            }
+        }
+
+        .program-payment-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .program-select,
+        .payment-select {
+            flex: 1;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(0,102,204,0.05);
+        }
+
+        .payment-option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .payment-label {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .program-payment-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .modal-text {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-text ol {
+            padding-left: 2em;
+            margin: 1em 0;
+        }
+
+        .modal-text ol li {
+            margin-bottom: 0.5em;
+            padding-left: 0.5em;
+        }
+
+        .modal-text ul {
+            padding-left: 2em;
+            margin: 0.5em 0;
+        }
+
+        .modal-text p {
+            margin: 1em 0;
+        }
+
+        .modal-text h2 {
+            margin-bottom: 1em;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Лого</div>
-            <ul>
-                <li><a href="couriers.html">Главная</a></li>
-                <li><a href="marketplace.html">Страхование</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <div class="form-container">
+            <h1 class="form-title">Freedom Health</h1>
+            <h2 class="form-subtitle">ОФОРМЛЕНИЕ</h2>
 
-    <main>
-        <div class="form-section">
-            <div class="form-container">
-                <form id="freedomHealthForm">
-                    <h1>ЗАЯВЛЕНИЕ НА МЕЖДУНАРОДНОЕ МЕДИЦИНСКОЕ СТРАХОВАНИЕ<br>(ПРОГРАММА "FREEDOM HEALTH")</h1>
-                    <div class="form-subtitle">
-                        <p>Перед заполнением заявления на страхование, пожалуйста, ознакомьтесь с правилами страхования!</p>
-                    </div>
-                    
-                    <!-- Раздел 1: Сведения о Застрахованном лице -->
-                    <div class="form-group">
-                        <h2>Раздел 1. Сведения о Застрахованном лице</h2>
-                        
-                        <div class="input-group">
-                            <label for="fullName">Ф.И.О.:</label>
-                            <input type="text" id="fullName" name="fullName" required>
+            <form id="freedomHealthForm">
+                <div class="form-group">
+                    <div class="program-payment-container">
+                        <div class="program-select">
+                            <label for="insuranceProgram">Выберите программу страхования:</label>
+                            <select id="insuranceProgram" name="insuranceProgram" class="form-control" required>
+                                <option value="">Выберите программу</option>
+                                <option value="platinum">Platinum</option>
+                                <option value="gold">Gold</option>
+                                <option value="silver">Silver</option>
+                                <option value="bronze">Bronze</option>
+                                <option value="standard-plus">Standard+</option>
+                                <option value="standard">Standard</option>
+                            </select>
                         </div>
 
-                        <div class="input-group">
-                            <label for="permanentAddress">Постоянный адрес:</label>
-                            <input type="text" id="permanentAddress" name="permanentAddress" required 
-                                placeholder="почтовый индекс, название области, города, села, улицы, микрорайона, номер дома, квартиры">
-                        </div>
-
-                        <div class="phone-group">
-                            <label>Номер телефона:</label>
-                            <div class="phone-inputs">
-                                <div class="phone-input">
-                                    <label for="homePhone">дом.</label>
-                                    <input type="tel" id="homePhone" name="homePhone" placeholder="код города, номер">
-                                </div>
-                                <div class="phone-input">
-                                    <label for="workPhone">раб.</label>
-                                    <input type="tel" id="workPhone" name="workPhone" placeholder="код города, номер">
-                                </div>
-                                <div class="phone-input">
-                                    <label for="mobilePhone">моб.</label>
-                                    <input type="tel" id="mobilePhone" name="mobilePhone" required placeholder="+7 (XXX) XXX-XX-XX">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="birth-info-group">
-                            <label>Дата и место рождения:</label>
-                            <div class="birth-inputs">
-                                <input type="date" id="birthDate" name="birthDate" required>
-                                <input type="text" id="birthPlace" name="birthPlace" required placeholder="населенный пункт">
-                            </div>
-                        </div>
-
-                        <div class="personal-info-group">
-                            <div class="input-group">
-                                <label for="gender">Пол:</label>
-                                <select id="gender" name="gender" required>
-                                    <option value="">Выберите пол</option>
-                                    <option value="male">Мужской</option>
-                                    <option value="female">Женский</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="maritalStatus">Семейное положение:</label>
-                                <select id="maritalStatus" name="maritalStatus" required>
-                                    <option value="">Выберите семейное положение</option>
-                                    <option value="single">Холост/Не замужем</option>
-                                    <option value="married">Женат/Замужем</option>
-                                    <option value="divorced">Разведен(а)</option>
-                                    <option value="widowed">Вдовец/Вдова</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="work-info-group">
-                            <div class="input-group">
-                                <label for="email">E-mail:</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="profession">Профессия:</label>
-                                <input type="text" id="profession" name="profession" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="workplace">Место работы:</label>
-                                <input type="text" id="workplace" name="workplace" required>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="jobDescription">Занимаемая должность и точное описание служебных обязанностей:</label>
-                            <textarea id="jobDescription" name="jobDescription" required></textarea>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="economySector">Код сектора экономики:</label>
-                            <input type="text" id="economySector" name="economySector" required>
-                        </div>
-
-                        <div class="residency-group">
-                            <label>Признак резидентства:</label>
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="residencyStatus" value="resident" required>
-                                    Резидент
-                                </label>
-                                <label>
-                                    <input type="radio" name="residencyStatus" value="nonresident">
-                                    Нерезидент
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="citizenship">Гражданство:</label>
-                            <input type="text" id="citizenship" name="citizenship" required>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="iin">ИИН:</label>
-                            <input type="text" id="iin" name="iin" required pattern="[0-9]{12}" maxlength="12">
-                        </div>
-
-                        <div class="document-group">
-                            <label>Документ, удостоверяющий личность:</label>
-                            <div class="input-group">
-                                <label for="documentNumber">№:</label>
-                                <input type="text" id="documentNumber" name="documentNumber" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="documentIssuer">Орган и дата выдачи:</label>
-                                <input type="text" id="documentIssuer" name="documentIssuer" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="documentValidity">Срок действия:</label>
-                                <input type="date" id="documentValidity" name="documentValidity" required>
-                            </div>
-                        </div>
-
-                        <div class="client-status-group">
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="clientStatus" value="new" checked>
-                                    Новый клиент (ранее не был клиентом АО «КСЖ «Freedom Life»)
-                                </label>
-                                <label>
-                                    <input type="radio" name="clientStatus" value="existing">
-                                    Клиент АО «КСЖ «Freedom Life»
-                                </label>
-                            </div>
-                            <div id="previousContractDetails" class="hidden" style="display: none;">
-                                <div class="input-group">
-                                    <label for="previousContract">Пожалуйста, укажите номер предыдущего договора страхования:</label>
-                                    <input type="text" id="previousContract" name="previousContract">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="foreign-tax-group">
-                            <label>Сведения об иностранном налоговом резидентстве:</label>
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="foreignTaxResidency" value="no" checked>
-                                    Нет
-                                </label>
-                                <label>
-                                    <input type="radio" name="foreignTaxResidency" value="yes">
-                                    Да
-                                </label>
-                            </div>
-                            <div id="foreignTaxDetails" class="hidden">
-                                <div class="input-group">
-                                    <label for="residencyCountry">Страна резидентства:</label>
-                                    <input type="text" id="residencyCountry" name="residencyCountry">
-                                </div>
-                                <div class="input-group">
-                                    <label for="taxNumber">Номер налогоплательщика:</label>
-                                    <input type="text" id="taxNumber" name="taxNumber">
-                                </div>
-                            </div>
+                        <div class="payment-select">
+                            <label for="paymentFrequency">Как будете оплачивать:</label>
+                            <select id="paymentFrequency" name="paymentFrequency" class="form-control" required>
+                                <option value="">Выберите способ оплаты</option>
+                                <option value="yearly">Единовременно</option>
+                                <option value="monthly">Раз в месяц</option>
+                                <option value="quarterly">Раз в квартал</option>
+                                <option value="semiannually">Раз в полгода</option>
+                            </select>
                         </div>
                     </div>
 
-                    <!-- Раздел 2: Сведения о страхователе -->
-                    <div class="form-group">
-                        <h2>Раздел 2. Сведения о страхователе</h2>
-                        
-                        <div class="is-insured-group">
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="isInsuredPerson" value="yes">
-                                    Страхователь является Застрахованным лицом
-                                </label>
-                                <label>
-                                    <input type="radio" name="isInsuredPerson" value="no" checked>
-                                    Страхователь не является Застрахованным лицом
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="insurerDetails">
-                            <div class="input-group">
-                                <label for="insurerFullName">Ф.И.О.:</label>
-                                <input type="text" id="insurerFullName" name="insurerFullName" required>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="insurerPermanentAddress">Постоянный адрес:</label>
-                                <input type="text" id="insurerPermanentAddress" name="insurerPermanentAddress" required 
-                                    placeholder="почтовый индекс, название области, города, села, улицы, микрорайона, номер дома, квартиры">
-                            </div>
-
-                            <div class="phone-group">
-                                <label>Номер телефона:</label>
-                                <div class="phone-inputs">
-                                    <div class="phone-input">
-                                        <label for="insurerHomePhone">дом.</label>
-                                        <input type="tel" id="insurerHomePhone" name="insurerHomePhone" placeholder="код города, номер">
-                                    </div>
-                                    <div class="phone-input">
-                                        <label for="insurerWorkPhone">раб.</label>
-                                        <input type="tel" id="insurerWorkPhone" name="insurerWorkPhone" placeholder="код города, номер">
-                                    </div>
-                                    <div class="phone-input">
-                                        <label for="insurerMobilePhone">моб.</label>
-                                        <input type="tel" id="insurerMobilePhone" name="insurerMobilePhone" required placeholder="+7 (XXX) XXX-XX-XX">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="birth-info-group">
-                                <label>Дата и место рождения:</label>
-                                <div class="birth-inputs">
-                                    <input type="date" id="insurerBirthDate" name="insurerBirthDate" required>
-                                    <input type="text" id="insurerBirthPlace" name="insurerBirthPlace" required placeholder="населенный пункт">
-                                </div>
-                            </div>
-
-                            <div class="personal-info-group">
-                                <div class="input-group">
-                                    <label for="insurerGender">Пол:</label>
-                                    <select id="insurerGender" name="insurerGender" required>
-                                        <option value="">Выберите пол</option>
-                                        <option value="male">Мужской</option>
-                                        <option value="female">Женский</option>
-                                    </select>
-                                </div>
-
-                                <div class="input-group">
-                                    <label for="insurerMaritalStatus">Семейное положение:</label>
-                                    <select id="insurerMaritalStatus" name="insurerMaritalStatus" required>
-                                        <option value="">Выберите семейное положение</option>
-                                        <option value="single">Холост/Не замужем</option>
-                                        <option value="married">Женат/Замужем</option>
-                                        <option value="divorced">Разведен(а)</option>
-                                        <option value="widowed">Вдовец/Вдова</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="work-info-group">
-                                <div class="input-group">
-                                    <label for="insurerEmail">E-mail:</label>
-                                    <input type="email" id="insurerEmail" name="insurerEmail" required>
-                                </div>
-                                <div class="input-group">
-                                    <label for="insurerProfession">Профессия:</label>
-                                    <input type="text" id="insurerProfession" name="insurerProfession" required>
-                                </div>
-                                <div class="input-group">
-                                    <label for="insurerWorkplace">Место работы:</label>
-                                    <input type="text" id="insurerWorkplace" name="insurerWorkplace" required>
-                                </div>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="insurerJobDescription">Занимаемая должность и точное описание служебных обязанностей:</label>
-                                <textarea id="insurerJobDescription" name="insurerJobDescription" required></textarea>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="insurerEconomySector">Код сектора экономики:</label>
-                                <input type="text" id="insurerEconomySector" name="insurerEconomySector" required>
-                            </div>
-
-                            <div class="residency-group">
-                                <label>Признак резидентства:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="insurerResidencyStatus" value="resident" required>
-                                        Резидент
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="insurerResidencyStatus" value="nonresident">
-                                        Нерезидент
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="insurerCitizenship">Гражданство:</label>
-                                <input type="text" id="insurerCitizenship" name="insurerCitizenship" required>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="insurerIin">ИИН:</label>
-                                <input type="text" id="insurerIin" name="insurerIin" required pattern="[0-9]{12}" maxlength="12">
-                            </div>
-
-                            <div class="document-group">
-                                <label>Документ, удостоверяющий личность:</label>
-                                <div class="input-group">
-                                    <label for="insurerDocumentNumber">№:</label>
-                                    <input type="text" id="insurerDocumentNumber" name="insurerDocumentNumber" required>
-                                </div>
-                                <div class="input-group">
-                                    <label for="insurerDocumentIssuer">Орган и дата выдачи:</label>
-                                    <input type="text" id="insurerDocumentIssuer" name="insurerDocumentIssuer" required>
-                                </div>
-                                <div class="input-group">
-                                    <label for="insurerDocumentValidity">Срок действия:</label>
-                                    <input type="date" id="insurerDocumentValidity" name="insurerDocumentValidity" required>
-                                </div>
-                            </div>
-
-                            <div class="client-status-group">
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="insurerClientStatus" value="new" checked>
-                                        Новый клиент (ранее не был клиентом АО «КСЖ «Freedom Life»)
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="insurerClientStatus" value="existing">
-                                        Клиент АО «КСЖ «Freedom Life»
-                                    </label>
-                                </div>
-                                <div id="insurerPreviousContractDetails" class="hidden" style="display: none;">
-                                    <div class="input-group">
-                                        <label for="insurerPreviousContract">Пожалуйста, укажите номер предыдущего договора страхования:</label>
-                                        <input type="text" id="insurerPreviousContract" name="insurerPreviousContract">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="foreign-tax-group">
-                                <label>Сведения об иностранном налоговом резидентстве:</label>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="insurerForeignTaxResidency" value="no" checked>
-                                        Нет
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="insurerForeignTaxResidency" value="yes">
-                                        Да
-                                    </label>
-                                </div>
-                                <div id="insurerForeignTaxDetails" class="hidden">
-                                    <div class="input-group">
-                                        <label for="insurerResidencyCountry">Страна резидентства:</label>
-                                        <input type="text" id="insurerResidencyCountry" name="insurerResidencyCountry">
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="insurerTaxNumber">Номер налогоплательщика:</label>
-                                        <input type="text" id="insurerTaxNumber" name="insurerTaxNumber">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="compare-link">
+                        <a href="#" id="compareTariffs">Сравнить все тарифы</a>
                     </div>
+                </div>
 
-                    <!-- Раздел 3: Медицинская анкета -->
-                    <div class="form-group">
-                        <h2>3. Медицинская анкета</h2>
-                        <div class="medical-questions">
-                            <div class="question-group">
-                                <p>3.1 Имеются ли у Вас или имелись ранее следующие заболевания:</p>
-                                <div class="disease-list">
-                                    <div class="disease-item">
-                                        <label>
-                                            <input type="checkbox" name="diseases" value="cardiovascular">
-                                            Сердечно-сосудистые заболевания
-                                        </label>
-                                        <textarea name="cardiovascular_details" placeholder="Укажите подробности..."></textarea>
-                                    </div>
-                                    <div class="disease-item">
-                                        <label>
-                                            <input type="checkbox" name="diseases" value="oncological">
-                                            Онкологические заболевания
-                                        </label>
-                                        <textarea name="oncological_details" placeholder="Укажите подробности..."></textarea>
-                                    </div>
-                                    <div class="disease-item">
-                                        <label>
-                                            <input type="checkbox" name="diseases" value="endocrine">
-                                            Эндокринные заболевания
-                                        </label>
-                                        <textarea name="endocrine_details" placeholder="Укажите подробности..."></textarea>
-                                    </div>
-                                    <div class="disease-item">
-                                        <label>
-                                            <input type="checkbox" name="diseases" value="respiratory">
-                                            Заболевания органов дыхания
-                                        </label>
-                                        <textarea name="respiratory_details" placeholder="Укажите подробности..."></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="form-group">
+                    <label for="iin">Введите ИИН</label>
+                    <input type="text" id="iin" class="form-control" required pattern="[0-9]{12}" maxlength="12">
+                </div>
 
-                            <div class="question-group">
-                                <p>3.2 Были ли у Вас травмы или операции за последние 5 лет?</p>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="hadTrauma" value="yes">
-                                        Да
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="hadTrauma" value="no">
-                                        Нет
-                                    </label>
-                                </div>
-                                <textarea name="trauma_details" placeholder="Если да, укажите подробности..."></textarea>
-                            </div>
+                <div class="form-group">
+                    <label for="fullName">Введите ФИО</label>
+                    <input type="text" id="fullName" class="form-control" required>
+                </div>
 
-                            <div class="question-group">
-                                <p>3.3 Находились ли Вы на стационарном лечении за последние 5 лет?</p>
-                                <div class="radio-group">
-                                    <label>
-                                        <input type="radio" name="hadHospitalization" value="yes">
-                                        Да
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="hadHospitalization" value="no">
-                                        Нет
-                                    </label>
-                                </div>
-                                <textarea name="hospitalization_details" placeholder="Если да, укажите подробности..."></textarea>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="gender">Пол</label>
+                    <select id="gender" class="form-control" required>
+                        <option value="">Выберите пол</option>
+                        <option value="male">Мужской</option>
+                        <option value="female">Женский</option>
+                    </select>
+                </div>
 
-                    <!-- Раздел 4: Дополнительная информация -->
-                    <div class="form-group">
-                        <h2>4. Дополнительная информация</h2>
-                        <div class="input-group">
-                            <label for="height">Рост (см):</label>
-                            <input type="number" id="height" name="height" required min="100" max="250">
-                        </div>
-                        <div class="input-group">
-                            <label for="weight">Вес (кг):</label>
-                            <input type="number" id="weight" name="weight" required min="30" max="200">
-                        </div>
-                        <div class="yes-no-group">
-                            <p>Курите ли Вы?</p>
-                            <div class="radio-group">
-                                <label>
-                                    <input type="radio" name="smoking" value="yes">
-                                    Да
-                                </label>
-                                <label>
-                                    <input type="radio" name="smoking" value="no">
-                                    Нет
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="birthDate">Дата рождения</label>
+                    <input type="date" id="birthDate" class="form-control" required>
+                </div>
 
-                    <!-- Раздел 5: Согласие -->
-                    <div class="form-group">
-                        <h2>5. Согласие и подтверждение</h2>
-                        <div class="consent-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="consent" required>
-                                Я подтверждаю достоверность предоставленной информации и согласен на обработку персональных данных
-                            </label>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" class="form-control" required placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
 
-                    <div class="form-actions">
-                        <button type="submit" class="submit-button">Отправить анкету</button>
-                        <button type="reset" class="reset-button">Очистить форму</button>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Адрес проживания: город, улица, дом, кв.</label>
+                    <input type="text" id="address" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Документ, удостоверяющий личность</label>
+                    <select id="documentType" class="form-control" required>
+                        <option value="">Тип документа</option>
+                        <option value="id">Удостоверение личности</option>
+                        <option value="passport">Паспорт</option>
+                    </select>
+                    <input type="text" id="documentNumber" class="form-control" placeholder="Номер/серия" required>
+                    <input type="date" id="documentDate" class="form-control" placeholder="Дата выдачи документа" required>
+                    <input type="text" id="documentIssuer" class="form-control" placeholder="Орган выдачи" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="promocode">Промокод, если имеется</label>
+                    <input type="text" id="promocode" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="nomadCard">Карта Nomad Club (если имеется)</label>
+                    <input type="text" id="nomadCard" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        Подтверждаю соблюдение и согласия с <a href="#" id="declarationLink">условиями декларации</a>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        Согласен на сбор и обработку персональных данных и ознакомлен с <a href="#" id="rulesLink">правилами страхования</a>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        Включить автоматическое списание денежных средств согласно графику
+                    </label>
+                </div>
+
+                <button type="submit" class="btn">Оплатить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно для сравнения тарифов -->
+    <div id="comparisonModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Сравнение тарифов</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Программы страхования</th>
+                        <th>Platinum</th>
+                        <th>Gold</th>
+                        <th>Silver</th>
+                        <th>Bronze</th>
+                        <th>Standard+</th>
+                        <th>Standard</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Стоимость* для физ. лиц 0-65, $ (годовой взнос)</td>
+                        <td>523,02</td>
+                        <td>408,45</td>
+                        <td>364,66</td>
+                        <td>277,67</td>
+                        <td>219,11</td>
+                        <td>158,36</td>
+                    </tr>
+                    <tr>
+                        <td>Стоимость* для физ. лиц 0-65, $ (ежемесячный взнос)</td>
+                        <td>50,12</td>
+                        <td>39,14</td>
+                        <td>34,95</td>
+                        <td>26,61</td>
+                        <td>21,00</td>
+                        <td>15,18</td>
+                    </tr>
+                    <tr>
+                        <td>Перелет и проживание</td>
+                        <td>2 человека</td>
+                        <td>2 человека</td>
+                        <td>2 человека</td>
+                        <td>2 человека</td>
+                        <td>2 человека</td>
+                        <td>2 человека</td>
+                    </tr>
+                    <tr>
+                        <td>Личный координатор, который сопровождает пациента</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                    </tr>
+                    <tr>
+                        <td>Злокачественные заболевания</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                    </tr>
+                    <tr>
+                        <td>Кардиохирургия</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Нейрохирургия</td>
+                        <td class="plus">+</td>
+                        <td></td>
+                        <td class="plus">+</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Трансплантация</td>
+                        <td class="plus">+</td>
+                        <td></td>
+                        <td class="plus">+</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Трансплантация костного мозга для детей до 18 лет</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                    </tr>
+                    <tr>
+                        <td>Реабилитация</td>
+                        <td class="plus">+</td>
+                        <td></td>
+                        <td class="plus">+</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Второе экспертное мнение</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                        <td class="plus">+</td>
+                    </tr>
+                    <tr>
+                        <td>Годовой лимит, $</td>
+                        <td>150 000</td>
+                        <td>150 000</td>
+                        <td>150 000</td>
+                        <td>150 000</td>
+                        <td>100 000</td>
+                        <td>100 000</td>
+                    </tr>
+                    <tr>
+                        <td>Пожизненный лимит, $</td>
+                        <td>1 000 000</td>
+                        <td>1 000 000</td>
+                        <td>1 000 000</td>
+                        <td>1 000 000</td>
+                        <td>1 000 000</td>
+                        <td>1 000 000</td>
+                    </tr>
+                    <tr>
+                        <td>Период ожидания</td>
+                        <td>120 дней</td>
+                        <td>120 дней</td>
+                        <td>120 дней</td>
+                        <td>120 дней</td>
+                        <td>120 дней</td>
+                        <td>120 дней</td>
+                    </tr>
+                    <tr>
+                        <td>Франшиза, $</td>
+                        <td>нет</td>
+                        <td>нет</td>
+                        <td>5 000</td>
+                        <td>5 000</td>
+                        <td>нет</td>
+                        <td>5 000</td>
+                    </tr>
+                    <tr>
+                        <td>Территория организации лечения</td>
+                        <td>весь мир, кроме Швейцарии</td>
+                        <td>весь мир, кроме Швейцарии</td>
+                        <td>весь мир, кроме Швейцарии</td>
+                        <td>весь мир, кроме Швейцарии</td>
+                        <td>Израиль, Южная Корея, Турция, Испания</td>
+                        <td>Израиль, Южная Корея, Турция, Испания</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Модальное окно для декларации -->
+    <div id="declarationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Условия декларации</h2>
+            <div class="modal-text">
+                <p>Я даю согласие на заключение договора страхования со страховщиком АО «КСЖ «Freedom Life» путем присоединения к Правилам добровольного международного медицинского страхования (программа «Freedom Health Online»), утверждённых Советом Директоров 31 января 2025 года, разработанным Страховщиком в одностороннем порядке (договор присоединения), и оформления Страховщиком мне страхового полиса в электронной форме, и подтверждаю, что заключение договора страхования является моим волеизъявлением, согласен в дальнейшем, что сведения, указанные в заявлении на страхование, будут являться основанием для заключения договора страхования, согласен в дальнейшем, что сведения, указанные в настоящей Декларации, размещенной на интернет-ресурсе Страховщика www.ffin.life будут являться неотъемлемой частью договора страхования, и если какое-либо сведение будет заведомо ложным, Страховщик имеет право отказать в осуществлении страховой выплаты.</p>
+                <p>Я, подтверждаю, что на момент заключения договора страхования:</p>
+                <ol>
+                    <li>Моя профессия не связана с повышенными рисками для здоровья, а именно: я не контактирую с канцерогенными или токсичными веществами или газами, взрывоопасными материалами, ионизирующей радиацией (включая ультрафиолетовое излучение, микроволновое излучение) или электрическими сетями высокого напряжения.</li>
+                    <li>За последние 12 месяцев у меня не было непреднамеренного снижения веса более чем на 10%.</li>
+                    <li>Я не употребляю и никогда не употреблял наркотики.</li>
+                    <li>Я не употребляю более 20 мл алкоголя в день в пересчете на чистый спирт.</li>
+                    <li>Я не курю на ежедневной основе сигареты, трубки, кальяны или другие заменители никотина.</li>
+                    <li>В настоящее время я не имею и не имел ранее никаких онкологических заболеваний, включая предраковые опухоли, доброкачественные или злокачественные опухоли кожи (включая кисты и любые новообразования), опухоли щитовидной железы, доброкачественные или злокачественные опухоли мозга, поликистоз почек, карциному и меланому in situ, рак крови / лейкемию.</li>
+                    <li>У меня никогда не было продолжительного повышения температуры (более 7 дней подряд) в связи с заболеваниями, кроме гриппа.</li>
+                    <li>У меня никогда не диагностировали вирус папилломы человека, вирус Эпштейна-Барра, вирус герпеса человека 8-го типа, Хеликобактер пилори, вирусы гепатита, вирус иммунодефицита человека (ВИЧ), у меня нет и не было СПИДа или обусловленных ВИЧ заболеваний.</li>
+                    <li>Я не находился на больничном более 14 дней подряд, кроме как в связи с гриппом, и у меня нет проблем со здоровьем, в связи с которыми предоставляется право на сокращенный рабочий день или частичную занятость.</li>
+                    <li>За последние 12 месяцев мне не проводились никакие операции, и я не находился на стационарном лечении (исключения: аппендэктомия, стоматологические операции, геморрой, тонзиллэктомия, прерывание беременности, операция на венах).</li>
+                    <li>Мне не проводилась операция, и я не находилась на стационарном лечении в связи с увеличением груди, трансплантацией органов, пересадкой костного мозга.</li>
+                    <li>У моих кровных родственников (родителей, детей, братьев, сестер) никогда не диагностировали рак, предраковые состояния или сердечно-сосудистое заболевание в возрасте до 60 лет, а также семейный аденоматозный полипоз.</li>
+                </ol>
+                <p>В пунктах 13 - 24 речь идет о последних 10 годах:</p>
+                <ol start="13">
+                    <li>У меня нет и не было заболеваний пищеварительной системы и грыж, включая рефлюкс, хроническое заболевание и/ или кровотечение, ректальное кровотечение, пилонидальный абсцесс, грыжи любых типов, язву желудка, колиты, болезнь Крона, пищевод Барретта, гастрит или полипы.</li>
+                    <li>У меня не были и нет заболеваний печени, желчного пузыря, селезенки и желчных протоков, включая желтуху, гепатит, цирроз, хроническую печеночную недостаточность, жировое перерождение печени, спленомегалию.</li>
+                    <li>У меня не было и нет заболеваний почек и мочевой системы, включая простатит, уролитиаз, нефрит, почечную недостаточность, энурез, кровь и/или белок в моче или поликистоз почек.</li>
+                    <li>У меня не было и нет нарушений обмена веществ, заболеваний эндокринной системы или поджелудочной железы, включая диабет, ожирение, высокое содержание триглицеридов в крови, сахар в моче, повышенный уровень холестерина, требующий лечения, заболевания щитовидной или паращитовидной железы, пролактиному, подагру, панкреатит.</li>
+                    <li>У меня не было и нет заболеваний половых и/или репродуктивных органов, включая грудь, неменструальное вагинальное кровотечение, миому матки, бесплодие (включая мужчин), дефектные яички, варикоцеле.</li>
+                    <li>У меня не было и нет заболеваний легких, включая астму (бронхит), хроническое обструктивное заболевание легких, эмфизему, туберкулезную инфекцию в настоящем или в прошлом, фиброз.</li>
+                    <li>У меня не было и нет заболеваний кровеносной или иммунной системы, включая анемию, проблемы со свертываемостью крови, нарушения иммунной системы.</li>
+                    <li>У меня не было и нет ревматизма и/или генерализированных заболеваний и/или расстройств, включая ревматоидный артрит, ревматизм, артрит, волчанку.</li>
+                    <li>У меня не было и нет сердечно-сосудистых заболеваний, включая проблемы с кровообращением (например, высокое кровяное давление), инсульт или болезни сердца, включая боль в груди, шумы в сердце, учащенное сердцебиение, ангину, инфаркт миокарда, атеросклероз, заболевания сердечного клапана, аритмию, кардиомиопатию.</li>
+                    <li>У меня не было и нет заболеваний нервной системы, включая центральную нервную систему (мозг,спинной мозг ..), периферийную нервную систему, автономные нервные системы, опорные элементы нервной системы (например, череп, позвоночник ...) и их систему кровоснабжения (внечерепная цереброваскулярная система).</li>
+                    <li>У меня не было и нет заболеваний или дефектов опорно-двигательного аппарата (например, деформация позвоночника, ограниченная амплитуда движения, ампутация или артриты), не получал травм, которые привели к постоянной или временной недееспособности.</li>
+                    <li>Мне не известно о каких-либо результатах онкологических или иных анализов, требующих дополнительных исследований или лечения.</li>
+                </ol>
+                <p>Я заявляю, что вся информация и ответы на вопросы о моём состоянии здоровья, я предоставил, являются достоверными и исчерпывающими, я ничего не пропустил и не скрыл. Я согласен, что эти данные послужили основанием для заключения договора страхования, и что АО «КСЖ «Freedom Life», не несет ответственности за любые претензии из-за болезни, травмы или смерть, причины которых были известны раньше, до того, как было принято заявление на страхование и были скрытыми либо не были упомянутыми в настоящей Декларации, размещенной на интернет-ресурсе Страховщика www.ffin.life и в заявлении на страхование.</p>
+                <p>Я даю свое согласие и делегирую полномочия АО «КСЖ «Freedom Life» на получение всей информации обо мне, включая мое состояние здоровья от любого врача или медицинского учреждения, где я когда-нибудь проходил лечение; от любой страховой компании, с которой были заключены договоры на страхование жизни и здоровья в отношении меня; от государственных организаций, и тому подобное.</p>
+                <p>Я полностью осведомлен, что в случае наступления страхового случая, медицинская информация из клиники, где я регулярно наблюдался на протяжении последних 5 лет, будет предоставлена «АО «КСЖ «Freedom Life» Я согласен, что в случае отказа обеспечить получение этой информации «АО «КСЖ «Freedom Life»» - я не получу страховую выплату.</p>
+                <p>В целях обеспечения соблюдения законодательства Республики Казахстан, Я, ИИН (далее - Субъект) предоставляю согласие АО «КСЖ «Freedom Life», БИН 140940003807 (далее «Оператор/Страховщик»):</p>
+                <ol>
+                    <li>на сбор Страховщиком из всех источников и обработку (в т.ч. накопление, хранение, изменение, дополнение, использование, распространение, обезличивание, блокирование и уничтожение) Страховщиком информации, относящейся к моим персональным данным на электронном, бумажном и любом ином носителе (далее – Информация);</li>
+                    <li>на сбор, обработку моих персональных и/или иных данных и на передачу этих данных Страховщиком в АО «Государственное кредитное бюро» (далее - Бюро), на предоставление и получение Страховщиком информации обо мне, полученной Бюро из всех Государственных баз данных (ГБД), включая операторов/владельцев ГБД, напрямую или через третьих лиц; на получение Бюро информации обо мне из ГБД от операторов/владельцев ГБД; на предоставление Бюро владельцами ГБД информации обо мне из всех ГБД напрямую или через третьих лиц; данное владельцам ГБД и юридическому лицу, осуществляющему по решению Правительства Республики Казахстан деятельность по оказанию государственных услуг в соответствии с законодательством Республики Казахстан – предоставлять и получать имеющуюся и поступающую в будущем обо мне информацию Бюро и Страховщику посредством Бюро.</li>
+                    <li>на самостоятельное определение Страховщиком условий доступа к Информации.</li>
+                </ol>
+                <p>А. Помимо вышеуказанного, согласие предоставляется Оператору на:</p>
+                <ol>
+                    <li>сбор и обработку Данных (как они определены в пункте B настоящего Согласия) путём:
+                        <ul>
+                            <li>регистрации и (или) авторизации Субъекта на веб-сайте (в мобильном приложении) Оператора или в ином электронном ресурсе Оператора;</li>
+                            <li>подписания Согласия на бумажном или электронном носителе любым способом не ограничиваясь проставлением подписи (собственноручно), средствами электронной цифровой подписи, подписания путем использования одноразового (единовременного) кода (one-time password), направленного Оператором или его агентом на номер мобильного телефона Субъекта SMS-сообщением или в web или ином программном приложении путем push-уведомления;</li>
+                            <li>посещения офисов Оператора, в тех случаях, когда это применимо;</li>
+                            <li>посещения электронных ресурсов Оператора, в том числе путем приема Cookies или иных политик, протоколов, программных и аппаратных средств, которые могут фиксировать данные Субъекта;</li>
+                            <li>использования продуктов или сервисов Оператора.</li>
+                        </ul>
+                    </li>
+                    <li>передачу Данных, не ограничиваясь персональными данными, данными составляющими тайну страхования и иную охраняемую законом тайну в пользу аффилированных лиц Оператора, и любых иных третьих лиц (далее совместно – "Третьи лица"), когда предоставление Данных требуется в соответствии с требованиями применимого законодательства, в целях предоставления Оператором или Третьими лицами продуктов и услуг Субъекту, или в целях исполнения обязательств по договору между Оператором и указанными Третьими лицами. Субъект соглашается, что Данные могут включаться в базы данных Оператора или Третьих лиц, где в последующем персональные данные Субъекта могут обрабатываться без какого-либо участия Оператора; при условии, что Оператор обязуется требовать от Третьих лиц обеспечить конфиденциальность переданных Данных;</li>
+                    <li>трансграничную передачу Оператором Данных за пределы территории Республики Казахстан в случаях, когда это необходимо для целей сбора и обработки Данных, заявленных в настоящей Декларации. Субъект соглашается, что страны, в которые могут передаваться Данные, могут иметь условия и требования хранения Данных ниже чем те, которые предусмотрены применимым законодательством Республики Казахстан и операторы Данных в этих странах не смогут обеспечить им надлежащую защиту.</li>
+                </ol>
+                <p>B. В настоящем Согласии "Данные" не должны ограничиваться сведениями / информацией, относящейся к определенному или определяемому на их основании Субъекту, зафиксированные на электронном, бумажном и (или) ином материальном носителе, в том числе, без исключения: фамилия, имя и отчество (при наличии); транскрипция имени; индивидуальный или иной идентификационный номер (если он предоставлен Субъектом Оператору); полная дата рождения; данные документа, удостоверяющего личность (если он предоставлен Субъектом Оператору) и иные документы (паспорт, вод.права, и т.п.); справки из государственных учреждений (медицинские, наркологические и др.); номер телефона; адрес электронной почты; адрес места проживания; изображение Субъекта (фотография, аватар и т.п.) (если оно предоставлено Субъектом Оператору); биометрические данные; идентификаторы (наименование учетных записей и выбираемые Субъектом идентификаторы); контакты телефонной книги (при использовании мобильных приложений Оператора/Третьих лиц); изображения с камеры устройства Субъекта; цифровые документы; звуковая запись с микрофона мобильного устройства; модель устройства Субъекта и данные о его операционной системе и браузере и (или) типе интернет-соединения; сегмент рынка, к которому относится Субъект; информация о налоговом резидентстве и налоговом идентификаторе Субъекта; записи коммуникаций с представителями службы поддержки и продаж Оператора; идентифицирующие устройство Субъекта сведения; публичные комментарии Субъекта, размещенные на сайтах в сети Интернет; данные о местонахождении Субъекта, полученные по IP-адресу и (или) по e-SIM и (или) SIM-карте и (или) по GPS (глобальная система позиционирования); информация о веб-сайтах, посещаемых Субъектом в сети Интернет; информация о покупках, совершенных Субъектом в сети Интернет и иные метаданные для аналитики (куки и т.д.); контент, размещенный Субъектом, либо просмотренный им в сети Интернет; а также публично доступная информация о Субъекте из социальных сетей; информация / данные, составляющие тайну страхования и иную охраняемую законом тайну; информация / данные, которые могут быть получены Оператором от или в отношении Субъекта.</p>
+                <p>C. Данные Субъекта собираются и обрабатываются с целью (перечень не является исчерпывающим): осуществления деятельности Оператора и Третьих лиц по оказанию финансовых услуг, маркетинговых и рекламных активностей, исследований, проведения акций, предоставления (пересылки) Субъекту любых информационных материалов, в том числе о продуктах и (или) услугах и (или) предложениях Оператора и Третьих лиц, а также иных уведомлений посредством телефонной, факсимильной и иных видов связи, а также по открытым каналам связи (в том числе SMS-сообщения, e-mail, push-уведомления, голосовые сообщения, системы удаленного доступа, социальные сети и т.п.), а также для оплаты с использованием QR-кодов или штрих кодов, для выбора получателя платежа или услуги из контактов телефонной книги, для отображения аватара/фото Субъекта в мобильном приложении Оператора и/или Третьих лиц, для получения и предоставления цифровых документов Субъекта в/из сервисы (-ов) цифровых документов, для голосового общения с представителями Оператора/Третьих лиц; для доставки товаров и оказания услуг Субъекту; для проведения проверок Оператором/Третьим лицом, связанных с исполнением требований по противодействию легализации (отмыванию) доходов и финансирования терроризма; для защиты клиентов Оператора от мошеннических действий Субъектов.</p>
+                <p>D. Персональные данные Субъекта не могут распространяться Оператором и (или) Третьими лицами в общедоступных источниках, за исключением случаев, когда от Субъекта получено соответствующее письменное согласие на совершение этих действий.</p>
+                <p>E. Настоящее Согласие предоставляется на весь период деятельности Оператора или до срока, когда будет выпущено обновленное согласие с донесением до Субьекта.</p>
+                <p>Я выражаю полное и безоговорочное согласие на использование АО «КСЖ «Freedom Life» моих персональных данных для поддержания связи со мной и направления уведомлений любым способом, включая телефонные звонки на указанный мобильный номер, отправку SMS-сообщений на указанный мобильный номер, отправку электронных писем на указанный электронный адрес.</p>
+                <p>Я даю согласие на передачу сведений, составляющих врачебную тайну в соответствии с законодательством Республики Казахстан, в АО «КСЖ «Freedom Life» в целях проверки информации по страховым случаям и осуществления страховых выплат по договору страхования</p>
+                <p>Я подтверждаю, что с Правилами добровольного международного медицинского страхования (программа «Freedom Health Online») утвержденных Советом директоров от 31 января 2025 года, размещенных на интернет-ресурсе Страховщика www.ffin.life ознакомлен и согласен.</p>
+                <p>Я подтверждаю, что заключаемый мною договор страхования не связан с легализацией (отмыванием) доходов, полученных преступным путем, и финансированием терроризма и финансированием распространения оружия массового уничтожения и я не являюсь публичным должностным лицом (ПДЛ).</p>
             </div>
         </div>
-    </main>
+    </div>
 
-    <script src="config.js"></script>
-    <script src="freedom-health-form.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработка выбора программы
+            const programCards = document.querySelectorAll('.program-card');
+            programCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    programCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Обработка выбора способа оплаты
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Маска для телефона
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function(e) {
+                let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                e.target.value = !x[2] ? x[1] : '+7 (' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '') + (x[4] ? '-' + x[4] : '');
+            });
+
+            // Валидация формы
+            const form = document.getElementById('freedomHealthForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Здесь будет логика отправки формы
+                console.log('Форма отправлена');
+            });
+
+            // Модальное окно для сравнения тарифов
+            const modal = document.getElementById('comparisonModal');
+            const compareLink = document.getElementById('compareTariffs');
+            const closeModal = document.querySelector('.close-modal');
+
+            compareLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Закрытие модального окна по клавише Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Обработка выбора программы и частоты оплаты
+            const programSelect = document.getElementById('insuranceProgram');
+            const paymentSelect = document.getElementById('paymentFrequency');
+
+            function updatePaymentOptions() {
+                const selectedProgram = programSelect.value;
+                const selectedPayment = paymentSelect.value;
+                // Здесь можно добавить логику обновления цен в зависимости от выбранной программы и способа оплаты
+            }
+
+            programSelect.addEventListener('change', updatePaymentOptions);
+            paymentSelect.addEventListener('change', updatePaymentOptions);
+
+            // Обработка модальных окон для документов
+            const declarationModal = document.getElementById('declarationModal');
+            const declarationLink = document.getElementById('declarationLink');
+            const rulesLink = document.getElementById('rulesLink');
+
+            declarationLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                declarationModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+
+            rulesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open('docs/Правила_добровольного_международного_мед_страхования_программа_Freedom.pdf', '_blank');
+            });
+
+            // Закрытие модального окна декларации
+            const closeButtons = document.querySelectorAll('.close-modal');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    declarationModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            window.addEventListener('click', function(e) {
+                if (e.target === declarationModal) {
+                    declarationModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && declarationModal.style.display === 'block') {
+                    declarationModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
