@@ -13,7 +13,7 @@ Thumbs.db
 *.code-workspace
 
 # PDF и большие файлы
-*.pdf
+# *.pdf
 
 # Прочее
 .env 
