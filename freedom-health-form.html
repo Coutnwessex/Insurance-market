@@ -362,11 +362,9 @@
                             <select id="insuranceProgram" name="insuranceProgram" class="form-control" required>
                                 <option value="">Выберите программу</option>
                                 <option value="platinum">Platinum</option>
-                                <option value="gold">Gold</option>
                                 <option value="silver">Silver</option>
-                                <option value="bronze">Bronze</option>
-                                <option value="standard-plus">Standard+</option>
-                                <option value="standard">Standard</option>
+                                <option value="standard1">Standard 1</option>
+                                <option value="standard2">Standard 2</option>
                             </select>
                         </div>
 
@@ -381,6 +379,8 @@
                             </select>
                         </div>
                     </div>
+
+                    <div id="priceDisplay" class="form-group"></div>
 
                     <div class="compare-link">
                         <a href="#" id="compareTariffs">Сравнить все тарифы</a>
@@ -725,49 +725,95 @@
                 console.log('Форма отправлена');
             });
 
-            // Модальное окно для сравнения тарифов
-            const modal = document.getElementById('comparisonModal');
+            // Логика расчета и отображения цены
+            const prices = {
+                platinum: {
+                    yearly: { usd: 540.91, kzt: 276902.65 },
+                    semiannually: { usd: 311.02, kzt: 159217.36 },
+                    quarterly: { usd: 155.51, kzt: 79608.68 },
+                    monthly: { usd: 51.84, kzt: 26537.93 }
+                },
+                silver: {
+                    yearly: { usd: 465.09, kzt: 238088.87 },
+                    semiannually: { usd: 267.43, kzt: 136902.77 },
+                    quarterly: { usd: 133.71, kzt: 68448.82 },
+                    monthly: { usd: 44.57, kzt: 22816.27 }
+                },
+                standard1: {
+                    yearly: { usd: 306.52, kzt: 156913.72 },
+                    semiannually: { usd: 176.25, kzt: 90225.90 },
+                    quarterly: { usd: 88.12, kzt: 45110.39 },
+                    monthly: { usd: 29.37, kzt: 15035.09 }
+                },
+                standard2: {
+                    yearly: { usd: 263.97, kzt: 135131.52 },
+                    semiannually: { usd: 151.78, kzt: 77699.22 },
+                    quarterly: { usd: 75.89, kzt: 38849.61 },
+                    monthly: { usd: 25.30, kzt: 12951.58 }
+                }
+            };
+
+            const insuranceProgramSelect = document.getElementById('insuranceProgram');
+            const paymentFrequencySelect = document.getElementById('paymentFrequency');
+            const priceDisplay = document.getElementById('priceDisplay');
+
+            function updatePrice() {
+                const program = insuranceProgramSelect.value;
+                const frequency = paymentFrequencySelect.value;
+
+                if (program && frequency) {
+                    const price = prices[program][frequency];
+                    priceDisplay.innerHTML = `
+                        <p><strong>К оплате:</strong></p>
+                        <h3>${price.usd.toFixed(2)} USD / ${price.kzt.toFixed(2)} KZT</h3>
+                    `;
+                    priceDisplay.style.padding = '15px';
+                    priceDisplay.style.border = '1px solid var(--primary-color)';
+                    priceDisplay.style.borderRadius = '5px';
+                    priceDisplay.style.backgroundColor = 'rgba(0,102,204,0.05)';
+                    priceDisplay.style.textAlign = 'center';
+
+                } else {
+                    priceDisplay.innerHTML = '';
+                    priceDisplay.style.padding = '0';
+                    priceDisplay.style.border = 'none';
+
+                }
+            }
+
+            insuranceProgramSelect.addEventListener('change', updatePrice);
+            paymentFrequencySelect.addEventListener('change', updatePrice);
+
+            // Модальные окна
+            const comparisonModal = document.getElementById('comparisonModal');
             const compareLink = document.getElementById('compareTariffs');
             const closeModal = document.querySelector('.close-modal');
 
             compareLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                modal.style.display = 'block';
+                comparisonModal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             });
 
             closeModal.addEventListener('click', function() {
-                modal.style.display = 'none';
+                comparisonModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             });
 
             window.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
+                if (e.target === comparisonModal) {
+                    comparisonModal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }
             });
 
             // Закрытие модального окна по клавише Escape
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.style.display === 'block') {
-                    modal.style.display = 'none';
+                if (e.key === 'Escape' && comparisonModal.style.display === 'block') {
+                    comparisonModal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }
             });
-
-            // Обработка выбора программы и частоты оплаты
-            const programSelect = document.getElementById('insuranceProgram');
-            const paymentSelect = document.getElementById('paymentFrequency');
-
-            function updatePaymentOptions() {
-                const selectedProgram = programSelect.value;
-                const selectedPayment = paymentSelect.value;
-                // Здесь можно добавить логику обновления цен в зависимости от выбранной программы и способа оплаты
-            }
-
-            programSelect.addEventListener('change', updatePaymentOptions);
-            paymentSelect.addEventListener('change', updatePaymentOptions);
 
             // Обработка модальных окон для документов
             const declarationModal = document.getElementById('declarationModal');

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страховой Маркетплейс | Современная защита</title>
+    <!-- Подключаем шрифты Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключаем наши стили -->
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 12px;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        /* Навигация */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Героический раздел */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px -7px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        /* Раздел страхования */
+        .insurance-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .insurance-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .insurance-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .insurance-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .insurance-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .card-header h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-header h3 i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .description {
+            padding: 1.5rem;
+            color: var(--gray);
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        /* Преимущества */
+        .features {
+            background-color: var(--light-gray);
+            padding: 5rem 2rem;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Отзывы */
+        .testimonials {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: var(--light-gray);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-logo i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            margin-right: 0.75rem;
+            color: var(--primary);
+        }
+        
+        .copyright {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.875rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                InsuranceMarket
+            </div>
+            <ul>
+                <li><a href="index-test.html">Главная</a></li>
+                <li><a href="#insurance">Страхование</a></li>
+                <li><a href="#features">Преимущества</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Современная страховая защита для вашего спокойствия</h1>
+                <p>Выберите оптимальное страхование с лучшими условиями и выгодными тарифами</p>
+                <div class="cta-buttons">
+                    <a href="#insurance" class="cta-button">Выбрать страховку</a>
+                    <a href="#features" class="cta-button secondary">Узнать больше</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="insurance" class="insurance-section">
+            <div class="section-header">
+                <h2>Наши страховые продукты</h2>
+                <p>Выберите подходящий вариант страхования для вас и ваших близких</p>
+            </div>
+            
+            <div class="insurance-cards">
+                <a href="health-insurance.html" class="insurance-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Страхование здоровья">
+                    </div>
+                    <div class="card-header">
+                        <h3><i class="fas fa-heartbeat"></i> Страхование здоровья</h3>
+                        <div class="price">от 2 500 ₸/мес</div>
+                    </div>
+                    <div class="description">
+                        <p>Полное медицинское обслуживание и лечение в лучших клиниках. Защита вашего здоровья 24/7.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="cta-button">Оформить страховку</button>
+                    </div>
+                </a>
+
+                <a href="couriers.html" class="insurance-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Страхование курьеров">
+                    </div>
+                    <div class="card-header">
+                        <h3><i class="fas fa-bicycle"></i> Страхование курьеров</h3>
+                        <div class="price">от 4 000 ₸/мес</div>
+                    </div>
+                    <div class="description">
+                        <p>Комплексная защита для курьеров на работе. Страхование от несчастных случаев и профессиональных рисков.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="cta-button">Подробнее</button>
+                    </div>
+                </a>
+
+                <a href="freedom-health-form.html" class="insurance-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b9876?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Freedom Health">
+                    </div>
+                    <div class="card-header">
+                        <h3><i class="fas fa-globe"></i> Freedom Health</h3>
+                        <div class="price">от 29.37$ / 15 035 ₸/мес</div>
+                    </div>
+                    <div class="description">
+                        <p>Международная медицинская страховка с лечением в лучших клиниках мира. Премиальное обслуживание.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="cta-button">Оформить</button>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2>Почему выбирают нас</h2>
+                    <p>Преимущества нашей страховой компании</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Быстрое оформление</h3>
+                        <p>Оформление страховки онлайн за 5 минут без лишних документов и посещения офиса</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h3>Выгодные тарифы</h3>
+                        <p>Гибкие тарифы и специальные предложения для постоянных клиентов</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Круглосуточная поддержка</h3>
+                        <p>Наши специалисты готовы помочь вам в любое время дня и ночи</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <h3>Простые выплаты</h3>
+                        <p>Быстрое рассмотрение страховых случаев и выплаты без задержек</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="section-header">
+                <h2>Отзывы наших клиентов</h2>
+                <p>Что говорят о нас те, кто уже воспользовался нашими услугами</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Оформил страховку для работы курьером буквально за несколько минут. Когда произошел несчастный случай, все выплаты получил очень быстро. Рекомендую!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Алексей К.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Алексей К.</h4>
+                            <p>Курьер, Алматы</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Freedom Health - это лучшее, что может быть для тех, кто заботится о своем здоровье. Когда мне понадобилась сложная операция, все было организовано на высшем уровне.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Марина Т.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Марина Т.</h4>
+                            <p>Предприниматель, Нур-Султан</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Страхование здоровья по программе Standard оказалось идеальным выбором для нашей семьи. Отличное соотношение цены и качества, все услуги на высоком уровне.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Руслан М.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Руслан М.</h4>
+                            <p>Инженер, Караганда</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    InsuranceMarket
+                </div>
+                <p>Мы предлагаем современные страховые решения для всех сфер жизни. Наша миссия - обеспечить вам спокойствие и уверенность в завтрашнем дне.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Страхование</h3>
+                <ul>
+                    <li><a href="health-insurance.html">Страхование здоровья</a></li>
+                    <li><a href="couriers.html">Страхование курьеров</a></li>
+                    <li><a href="freedom-health-form.html">Freedom Health</a></li>
+                    <li><a href="#">Автострахование</a></li>
+                    <li><a href="#">Страхование имущества</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Наша команда</a></li>
+                    <li><a href="#">Карьера</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Партнерам</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-map-marker-alt"></i> г. Алматы, ул. Абая 150, офис 309</p>
+                <p><i class="fas fa-phone"></i> +7 (727) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@insurancemarket.kz</p>
+                <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 InsuranceMarket. Все права защищены. <a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
+        </div>
+    </footer>
+</body>
+</html> 
